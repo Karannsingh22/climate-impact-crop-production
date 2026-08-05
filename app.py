@@ -1,13 +1,29 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import gdown
+import os
 
+os.makedirs("models", exist_ok=True)
 
-yield_model = joblib.load('models/yield_prediction_model_RFR.pkl')
-crop_model = joblib.load('models/crop_recommendation_RFC.pkl')
-label_encoder = joblib.load('models/label_encoder.pkl')
-yield_columns = joblib.load('models/yield_columns.pkl')
+FILES = {
+    "yield_prediction_model_RFR.pkl": "15Wdg_B2nfIyFld--CMwOBNlfPjJB-cLK",
+    "crop_recommendation_RFC.pkl": "1Q7VfYU9OHgRbdj4MmFdiM4IT_0N85Yen",
+    "label_encoder.pkl": "1EvlGD49RWYM91tJyE-__LC3ho6OOq-TV",
+    "yield_columns.pkl": "1-DDWqQzepnQIoFZrrwMbPcjvlH7FfBmV",
+}
 
+for filename, file_id in FILES.items():
+    path = f"models/{filename}"
+
+    if not os.path.exists(path):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, path, quiet=False)
+
+yield_model = joblib.load("models/yield_prediction_model_RFR.pkl")
+crop_model = joblib.load("models/crop_recommendation_RFC.pkl")
+label_encoder = joblib.load("models/label_encoder.pkl")
+yield_columns = joblib.load("models/yield_columns.pkl")
 
 area_lookup = {
     col.replace("Area_", "").lower(): col
