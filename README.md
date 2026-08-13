@@ -7,7 +7,7 @@ The project includes exploratory data analysis, machine learning model developme
 ## 🚀 Live Demo
 
 **Streamlit App:**
-*Add your deployed Streamlit URL here after deployment.*
+https://climate-impact-crop-appuction-zqidhmmwjbmafeljhg98e8.streamlit.app/
 
 ---
 
